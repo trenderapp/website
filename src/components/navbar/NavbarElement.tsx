@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "../../Style/All.module.scss";
+import React, { PropsWithChildren } from "react";
+import styles from "@/styles/all.module.scss";
 
-function NavbarElement({ children }) {
+function NavbarElement({ children }: PropsWithChildren) {
 
     return (
         <header className={`${styles.row} ${styles.space_between} ${styles.wrap}`}>

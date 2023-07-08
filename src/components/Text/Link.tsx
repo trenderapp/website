@@ -1,9 +1,8 @@
 import React from "react";
 import NextLink from "next/link";
 import TextStyles from "./Text.module.scss";
-import { IpropsWithChildren } from "@/interfaces";
 
-type sectionProps = IpropsWithChildren<{
+type sectionProps = React.PropsWithChildren<{
     text?: string;
     href: any;
     className?: string;
@@ -16,10 +15,8 @@ type sectionProps = IpropsWithChildren<{
 
 function CreateLink({ children, text, href, className, onClick, locale, underline, noHover }: sectionProps) {
     return (
-        <NextLink passHref locale={locale} href={href}>
-            <a onClick={onClick} className={`${underline ? TextStyles.underline : ""} ${noHover ? TextStyles.no_hover : ""} ${className ? className : ""}`}>
-                { text ?? children }
-            </a>
+        <NextLink onClick={onClick} className={`${underline ? TextStyles.underline : ""} ${noHover ? TextStyles.no_hover : ""} ${className ? className : ""}`} passHref locale={locale} href={href}>
+            { text ?? children }
         </NextLink>
     )
 }

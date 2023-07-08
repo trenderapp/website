@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import colors from "@/styles/colors.module.scss";
+import styles from "@/styles/all.module.scss";
 import { icons } from "./SvgList";
 
 type SectionType = {
@@ -9,8 +10,11 @@ type SectionType = {
     margin?: number,
     noColor?: boolean,
     color?: string;
+    hover?: boolean;
+    pointer?: boolean;
+    className?: string;
 }
-function SvgElement({ onClick, name, size = 33, margin, noColor }: SectionType) {
+function SvgElement({ onClick, name, size = 33, margin, noColor, hover, pointer, className }: SectionType) {
 
     const [svg, setSvg] = useState({
         w: 512,

@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+"use client"
+import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import { detect } from "detect-browser";
 
 import { cdnbaseurl } from "@/services/constante";
-import Seo from "./Seo";
-import CreateLink from "@/components/Text/Link";
 import { AnimatedIconBox, AnimatedTwoDivBox } from "@/components/animations";
-import { useTranslation } from "../../Context/Localization";
-import { ChangeLanguages } from "../../Components/Menu";
-import { NavbarDiv } from "@/components/Navbar";
-import { useEffect } from "react";
+import { useTranslation } from "@/context/Localization";
+import { ChangeLanguages } from "@/components/menu";
+import { NavbarDiv } from "@/components/navbar";
+import { Link } from "@/components";
+import useClient from "@/context/Client/useClient";
 
+function HomePage() {
 
-function Presentation() {
-
-    const { t } = useTranslation("presentation");
+    const { t } = useTranslation();
+    const { token } = useClient();
     const [plateform, setPlateform] = useState<string>("");
 
     useEffect(() => {
@@ -36,16 +36,17 @@ function Presentation() {
 
     return (
         <div className="presentation">
-            <Seo />
             <header>
-                <CreateLink noHover href="/" >
+                <Link disable href="/" >
                     <img src={`${cdnbaseurl}/assets/logos/white.png`} alt="app-logo" />
-                </CreateLink>
+                </Link>
                 <NavbarDiv>
-                    <ChangeLanguages size={32} />
+                    <ChangeLanguages size={32} displayText={false} />
+                    
+                    { token ? <Link type="contained" href="/">Home</Link> : <Link type="contained" href="/">Login</Link> }
                     {  plateform && (
                         <div className="connect">
-                            <CreateLink noHover text={t("download")} href={plateform} /> 
+                            <Link href={plateform}>{t("download")}</Link>
                         </div>
                         ) 
                     }
@@ -80,24 +81,24 @@ function Presentation() {
             <footer>
                 <div className="left">
                     <h3>Application</h3> 
-                    <AnimatedIconBox link={"https://play.google.com/store/apps/details?id=com.trenderapp.social"} text="Android" icon={"play-store"} />
-                    <AnimatedIconBox link={"https://apps.apple.com/app/trender-social-network/id6443865410"} text="IOS" icon={"apple-icon"} />
+                    <Link href={"https://play.google.com/store/apps/details?id=com.trenderapp.social"}>Android</Link>
+                    <Link href={"https://apps.apple.com/app/trender-social-network/id6443865410"}>IOS</Link>
                 </div>
                 <div className="middle">
                     <h3>Informations</h3>
-                    <CreateLink text="Contact" href="mailto:support@trenderapp.com" />
-                    <CreateLink text="API" href="https://doc.trenderapp.com" />
+                    <Link href="mailto:support@trenderapp.com">Contact</Link>
+                    <Link href="https://doc.trenderapp.com">API</Link>
                     <span>© {dayjs().year()} Trender</span>
                 </div>
                 <div className="right">
                     <h3>Legals</h3>
-                    <CreateLink text="Terms of Sales" href="https://cdn.trenderapp.com/assets/legal/TOS.pdf" />
-                    <CreateLink text="Terms of Services" href="https://cdn.trenderapp.com/assets/legal/T&S.pdf" />
-                    <CreateLink text="Legal Mentions" href="https://cdn.trenderapp.com/assets/legal/T&S.pdf" />
+                    <Link href="https://cdn.trenderapp.com/assets/legal/TOS.pdf">Terms of Sales</Link>
+                    <Link href="https://cdn.trenderapp.com/assets/legal/T&S.pdf">Terms of Services</Link>
+                    <Link href="https://cdn.trenderapp.com/assets/legal/T&S.pdf">Legal Mentions</Link>
                 </div>
             </footer>
         </div>
     )
 }
 
-export default Presentation;
+export default HomePage;

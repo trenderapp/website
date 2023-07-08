@@ -1,8 +1,14 @@
 import React from "react";
-import styles from "../../Style/All.module.scss";
+import styles from "@/styles/all.module.scss";
 import CreateLink from "../Text/Link";
 
-function NavbarLink({ text, href, className }) {
+type sectionProps = {
+    text: string;
+    href: string;
+    className?: string;
+}
+
+function NavbarLink({ text, href, className }: sectionProps) {
 
     return (
         <CreateLink href={href} className={`${styles.uppercase} ${className}`}>

@@ -1,8 +1,7 @@
 import React from "react";
-import styles from "../../Style/All.module.scss";
-import { IpropsWithChildren } from "@/interfaces";
+import styles from "@/styles/all.module.scss";
 
-function NavbarDiv({ children }: IpropsWithChildren) {
+function NavbarDiv({ children }: React.PropsWithChildren) {
     return (
         <div className={styles.row}>
             { children }

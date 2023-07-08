@@ -1,9 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
 import { cdnbaseurl } from '@/services/constante';
-import { IpropsWithChildren } from '@/interfaces';
 
-type sectionProps = IpropsWithChildren<{
+type sectionProps = React.PropsWithChildren<{
     title?: string;
     description?: string;
     url?: string;
