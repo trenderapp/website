@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Animations.module.scss";
 import { motion } from "framer-motion";
-import CreateLink from "../Text/Link";
+import { Link } from "@/components";
 import Svg from "../svg";
 
 let easing = [0.6, -0.05, 0.01, 0.99];
@@ -35,12 +35,12 @@ type sectionProps = {
 function AnimatedIconBox({ text, icon, link }: sectionProps) {
 
     return (
-        <CreateLink className={styles.second_box} href={link}>
+        <Link className={styles.second_box} href={link}>
             <motion.div {...fadeInUp} className={styles.box_icon}>
                 { icon && <Svg noColor size={20} name={icon} /> }
                 { text && <span>{text}</span> }
             </motion.div>
-        </CreateLink>
+        </Link>
     )
 }
 

@@ -13,7 +13,7 @@ export const PATTERN_CARD_EXPIRE_DATE = /\d{2}\/\d{2}/;
 export const PATTERN_CARD_CVV = /\d{3}/;
 export const PATTERN_FULLNAME = /^$|^[a-zA-ZčČćĆđĐšŠžŽ-]+ [a-zA-ZčČćĆđĐšŠžŽ-]+$/;
 
-export const classNames = (styles: string[]) => styles.join(" ")
+export const classNames = (styles: Array<string | undefined>) => styles.join(" ")
 
 export const convertFirstCharacterToUppercase = (stringToConvert: string) => {
   var firstCharacter = stringToConvert.substring(0, 1);

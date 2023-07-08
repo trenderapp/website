@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Animations.module.scss";
 import { motion } from "framer-motion";
-import CreateLink from "../Text/Link";
+import { Link } from "@/components";
 
 let easing = [0.6, -0.05, 0.01, 0.99];
 
@@ -40,7 +40,7 @@ function AnimatedTextTitle({ title, text, button }: sectionProps) {
             <motion.div className={styles.box_text}>
                 { title && <motion.h2 {...fadeInUp} className={styles.title}>{title}</motion.h2> }
                 { text && <motion.p {...fadeInUp} className={styles.text}>{text}</motion.p> }
-                { button && <motion.div {...fadeInUp} className={styles.button}><CreateLink noHover href={button.href}>{button.text}</CreateLink></motion.div> }
+                { button && <motion.div {...fadeInUp} className={styles.button}><Link disable href={button.href}>{button.text}</Link></motion.div> }
             </motion.div>
         </motion.div>
     )

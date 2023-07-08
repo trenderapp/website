@@ -11,17 +11,19 @@ type sectionProps = React.PropsWithChildren<{
     type?: "text" | "contained" | "outlined";
     disable?: boolean;
     uppercase?: boolean;
-    target?: React.HTMLAttributeAnchorTarget
+    target?: React.HTMLAttributeAnchorTarget;
+    className?: string;
 }>
 
-export default function Link({ children, href, type = "text", target, disable, uppercase = false }: sectionProps) {
+export default function Link({ children, href, type = "text", target, disable, uppercase = false, className }: sectionProps) {
     return (
         <NextLink href={href} className={classNames([
             styles.global,
             styles[uppercase ? "uppercase" : ""],
             styles[href ? "pointer" : ""],
             styles[disable ? "noHover" : ""],
-            styles[type === "contained" ? "contained" : type === "outlined" ? "outlined" : ""]
+            styles[type === "contained" ? "contained" : type === "outlined" ? "outlined" : ""],
+            className
         ])} target={target} >
             { children }
         </NextLink>

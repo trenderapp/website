@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "@/styles/all.module.scss";
-import CreateLink from "../Text/Link";
+import { Link } from "@/components";
 
 type sectionProps = {
     text: string;
@@ -11,9 +11,9 @@ type sectionProps = {
 function NavbarLink({ text, href, className }: sectionProps) {
 
     return (
-        <CreateLink href={href} className={`${styles.uppercase} ${className}`}>
+        <Link href={href} className={`${styles.uppercase} ${className}`}>
             { text }
-        </CreateLink>
+        </Link>
         
     )
 }
