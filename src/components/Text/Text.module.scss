@@ -7,3 +7,11 @@
         filter: none;
     }
 }
+
+.normal {
+    color: var(--text-normal);
+}
+
+.error {
+    color: var(--warning-color)
+}

@@ -5,6 +5,10 @@
         text-transform: uppercase;
     }
 
+    &.underline {
+        text-decoration: underline;
+    }
+
     &.pointer {    
         cursor: pointer;
         transition: var(--transition);

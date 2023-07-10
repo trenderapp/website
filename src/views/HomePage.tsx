@@ -92,9 +92,9 @@ function HomePage() {
                 </div>
                 <div className="right">
                     <h3>Legals</h3>
-                    <Link href="https://cdn.trenderapp.com/assets/legal/TOS.pdf">Terms of Sales</Link>
-                    <Link href="https://cdn.trenderapp.com/assets/legal/T&S.pdf">Terms of Services</Link>
-                    <Link href="https://cdn.trenderapp.com/assets/legal/T&S.pdf">Legal Mentions</Link>
+                    <Link href="https://cdn.trenderapp.com/assets/legal/en/TOS.pdf">Terms of Sales</Link>
+                    <Link href="https://cdn.trenderapp.com/assets/legal/en/T&S.pdf">Terms of Services</Link>
+                    <Link href="https://cdn.trenderapp.com/assets/legal/en/T&S.pdf">Legal Mentions</Link>
                 </div>
             </footer>
         </div>

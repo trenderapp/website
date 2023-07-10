@@ -5,7 +5,7 @@ const publicUrl = process.env.PUBLIC_URL || ''
 export const LS_KEY = 'trender_language';
 
 export const fetchLocale = async (locale: string) => {
-  const response = await fetch(`${publicUrl}/${locale}.json`)
+  const response = await fetch(`${publicUrl}/locales/${locale}.json`)
   if (response.ok) {
     const data = await response.json()
     return data

@@ -1,29 +1,26 @@
-import { createContext, useCallback, useEffect, useState, useMemo } from 'react'
+import { createContext, useCallback, useEffect, useState } from 'react'
 import memoize from 'lodash/memoize'
-import omitBy from 'lodash/omitBy'
-import reduce from 'lodash/reduce'
 import { EN, languages } from './config/languages'
 import { ContextApi, ProviderState, TranslateFunction, Language } from './types'
 import { LS_KEY, fetchLocale, getLanguageCodeFromLS } from './helpers'
+import translations from './config/translations.json'
+
+// Export the translations directly
 
 const initialState: ProviderState = {
   isFetching: true,
   currentLanguage: EN,
 }
 
-const includesVariableRegex = new RegExp(/%\S+?%/, 'gm')
+const includesVariableRegex = new RegExp(/{{\S+?}}/, 'gm')
 
-const translatedTextIncludesVariable = memoize((translatedText: string): boolean => {
+const translatedTextIncludesVariable = memoize((translatedText) => {
   return !!translatedText?.match(includesVariableRegex)
 })
 
-const getRegExpForDataKey = memoize((dataKey: string): RegExp => {
-  return new RegExp(`%${dataKey}%`, 'g')
-})
-
 // Export the translations directly
-const languageMap = new Map<Language['locale'], Record<string, string>>()
-languageMap.set(EN.locale, {})
+export const languageMap = new Map<Language['locale'], Record<string, string>>()
+languageMap.set(EN.locale, translations)
 
 export const LanguageContext = createContext<ContextApi | undefined>(undefined)
 
@@ -43,9 +40,10 @@ export const LanguageProvider: React.FC<React.PropsWithChildren> = ({ children }
       const codeFromStorage = getLanguageCodeFromLS()
 
       if (codeFromStorage !== EN.locale) {
+        const enLocale = languageMap.get(EN.locale)
         const currentLocale = await fetchLocale(codeFromStorage)
         if (currentLocale) {
-          languageMap.set(codeFromStorage, currentLocale);
+          languageMap.set(codeFromStorage, { ...enLocale, ...currentLocale })
         }
       }
 
@@ -56,7 +54,7 @@ export const LanguageProvider: React.FC<React.PropsWithChildren> = ({ children }
     }
 
     fetchInitialLocales()
-  }, [])
+  }, [setState])
 
   const setLanguage = useCallback(async (language: Language) => {
     if (!languageMap.has(language.locale)) {
@@ -92,32 +90,26 @@ export const LanguageProvider: React.FC<React.PropsWithChildren> = ({ children }
 
   const translate: TranslateFunction = useCallback(
     (key, data) => {
-      const translationSet = languageMap.get(currentLanguage.locale) ?? {}
+      const translationSet = languageMap.get(currentLanguage.locale) ?? languageMap.get(EN.locale)
       const translatedText = translationSet?.[key] || key
 
-      if (data) {
-        // Check the existence of at least one combination of %%, separated by 1 or more non space characters
-        const includesVariable = translatedTextIncludesVariable(key)
-        if (includesVariable) {
-          return reduce(
-            omitBy(data),
-            (result, dataValue, dataKey) => {
-              return result.replace(getRegExpForDataKey(dataKey), dataValue.toString())
-            },
-            translatedText,
-          )
-        }
+      // Check the existence of at least one combination of %%, separated by 1 or more non space characters
+      const includesVariable = translatedTextIncludesVariable(translatedText)
+
+      if (includesVariable && data) {
+        let interpolatedText = translatedText
+        Object.keys(data).forEach((dataKey) => {
+          const templateKey = new RegExp(`{{${dataKey}}}`, 'g')
+          interpolatedText = interpolatedText.replace(templateKey, data[dataKey].toString())
+        })
+
+        return interpolatedText
       }
 
       return translatedText
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentLanguage],
   )
 
-  const providerValue = useMemo(() => {
-    return { ...state, setLanguage, t: translate }
-  }, [state, setLanguage, translate])
-
-  return <LanguageContext.Provider value={providerValue}>{children}</LanguageContext.Provider>
+  return <LanguageContext.Provider value={{ ...state, setLanguage, t: translate }}>{children}</LanguageContext.Provider>
 }
