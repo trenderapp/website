@@ -1,15 +1,12 @@
-import * as React from 'react';
+import { createContext } from "react";
+import { DarkBlueTheme } from "./ThemeColors";
 
 export type availableAppTheme = "theme-dark-blue" | "theme-white" | "theme-dark"
 
-const ThemeContext = React.createContext<{
-    theme: availableAppTheme,
-    setTheme: React.Dispatch<React.SetStateAction<availableAppTheme>>
-}>({
+const ThemeContext = createContext({
     theme: "theme-dark-blue",
-    setTheme: () => {}
+    setTheme: (_type: availableAppTheme) => {},
+    ...DarkBlueTheme
 });
-
-ThemeContext.displayName = 'ThemeContext';
 
 export default ThemeContext;

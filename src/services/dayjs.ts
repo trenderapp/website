@@ -34,6 +34,7 @@ export class formatDate {
 
     isOlder(recent: dayjsType) {
         const current = dayjs(this.current_date);
+        // @ts-ignore
         return current.isSameOrBefore(recent);
     }
 }

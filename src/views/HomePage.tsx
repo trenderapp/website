@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import { detect } from "detect-browser";
+import Image from "next/image";
 
 import { cdnbaseurl } from "@/services/constante";
 import { AnimatedIconBox, AnimatedTwoDivBox } from "@/components/animations";
@@ -9,12 +10,10 @@ import { useTranslation } from "@/context/Localization";
 import { ChangeLanguages } from "@/components/menu";
 import { NavbarDiv } from "@/components/navbar";
 import { Link } from "@/components";
-import useClient from "@/context/Client/useClient";
 
 function HomePage() {
 
     const { t } = useTranslation();
-    const { token } = useClient();
     const [plateform, setPlateform] = useState<string>("");
 
     useEffect(() => {
@@ -38,12 +37,12 @@ function HomePage() {
         <div className="presentation">
             <header>
                 <Link disable href="/" >
-                    <img src={`${cdnbaseurl}/assets/logos/white.png`} alt="app-logo" />
+                    <Image src={`${cdnbaseurl}/assets/logos/white.png`} alt="app-logo" />
                 </Link>
                 <NavbarDiv>
                     <ChangeLanguages size={32} displayText={false} />
                     
-                    { token ? <Link type="contained" href="/">Home</Link> : <Link type="contained" href="/">Login</Link> }
+                    { /*token ? <Link type="contained" href="/">Home</Link> : <Link type="contained" href="/login">Login</Link>*/ }
                     {  plateform && (
                         <div className="connect">
                             <Link href={plateform}>{t("download")}</Link>
@@ -62,21 +61,6 @@ function HomePage() {
                     </>
                }
                 />
-            {
-                /*
-            <AnimatedBoxImage reverse title={t("create_your_own_trender_title")} text={t("create_your_own_trender_description")} image={{
-                src: `${cdnbaseurl}/assets/backgrounds/placeholder_eric.png`,
-                alt: "juste un truc qui doit etre la"
-            }} />
-            <AnimatedBoxImage title={t("connect_to_the_blockchain_title")} text={t("connect_to_the_blockchain_description")} image={{
-                src: `${cdnbaseurl}/assets/backgrounds/placeholder_eric.png`,
-                alt: "juste un truc qui doit etre la"
-            }} />
-            <AnimatedBoxImage reverse title={t("use_it_everywhere_title")} text={t("use_it_everywhere_description")} image={{
-                src: `${cdnbaseurl}/assets/backgrounds/placeholder_eric.png`,
-                alt: "juste un truc qui doit etre la"
-            }} />*/
-            }
 
             <footer>
                 <div className="left">

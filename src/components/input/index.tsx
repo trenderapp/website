@@ -3,50 +3,54 @@ import styles from "./input.module.scss";
 import { classNames } from "@/services";
 
 type sectionProps = PropsWithChildren<{
-    mode?: 'flat' | 'outlined';
-    left?: React.ReactNode;
-    right?: React.ReactNode;
-    disabled?: boolean;
-    editable?: boolean;
-    label: string;
-    placeholder?: string;
-    error?: boolean;
-    onChangeText?: ChangeEventHandler<HTMLInputElement>;
-    textColor?: string;
-    multiline?: boolean;
-    numberOfLines?: number;
-    value?: string;
-    autoComplete?: string;
-    name?: string;
-    type: HTMLInputTypeAttribute
-  }>
+  mode?: 'flat' | 'outlined';
+  left?: React.ReactNode;
+  right?: React.ReactNode;
+  disabled?: boolean;
+  editable?: boolean;
+  label: string;
+  placeholder?: string;
+  error?: boolean;
+  onChangeText?: ChangeEventHandler<HTMLInputElement>;
+  textColor?: string;
+  multiline?: boolean;
+  numberOfLines?: number;
+  value?: string;
+  autoComplete?: string;
+  name?: string;
+  type: HTMLInputTypeAttribute
+}>
 
 function Input({
-    mode = 'flat',
-    disabled = false,
-    error: errorProp = false,
-    multiline = false,
-    editable = true,
-    label,
-    placeholder = "",
-    error = false,
-    onChangeText,
-    textColor,
-    numberOfLines,
-    value = "",
-    autoComplete,
-    name,
-    type
-  }: sectionProps) {
+  mode = 'flat',
+  disabled = false,
+  error: errorProp = false,
+  multiline = false,
+  editable = true,
+  label,
+  placeholder = "",
+  error = false,
+  onChangeText,
+  textColor,
+  numberOfLines,
+  right,
+  value = "",
+  autoComplete,
+  name,
+  type
+}: sectionProps) {
 
-    return (
-        <div className={classNames([
-            styles.input
-        ])}>
-            <label>{label}</label>
-            <input type={type} name={name} autoComplete={autoComplete} value={value} id={name} onChange={(e) => onChangeText ? onChangeText(e) : {}} />
-            </div>
-    )
+  return (
+    <div className={classNames([
+      styles.input
+    ])}>
+      <label>{label}</label>
+      <div className={styles.right}>
+        <input type={type} name={name} autoComplete={autoComplete} value={value} id={name} onChange={(e) => onChangeText ? onChangeText(e) : {}} />
+        {right && <span className={styles.rightComponent}>{right}</span>}
+      </div>
+    </div>
+  )
 }
 
 export default Input;

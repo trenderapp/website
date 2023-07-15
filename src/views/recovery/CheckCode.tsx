@@ -9,9 +9,9 @@ function RegisterVerifyHome({ response }: { response: any }) {
     const history = useRouter();
     const { t } = useTranslation();
 
-    /*setTimeout(() => {
+    setTimeout(() => {
         history.push(response?.data?.success ? "/login" : "/register")
-    }, 15000)*/
+    }, 15000)
 
     return (
         <Form title={t(response?.data?.success ? "email_verified" : `${response?.error?.code}`)}>

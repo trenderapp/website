@@ -1,6 +1,18 @@
 .input {
     margin: 0 0 15px;
 
+    .right {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .rightComponent {
+        width: 100%;
+        position: relative;
+        margin: -180px;
+      }
+    }
+
     label {
       display: flex;
       flex-direction: row;

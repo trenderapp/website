@@ -33,7 +33,7 @@ export const LanguageProvider: React.FC<React.PropsWithChildren> = ({ children }
       currentLanguage: languages[codeFromStorage] || EN,
     }
   })
-  const { currentLanguage } = state
+  const { currentLanguage } = state;
 
   useEffect(() => {
     const fetchInitialLocales = async () => {
