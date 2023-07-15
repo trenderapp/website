@@ -17,16 +17,16 @@ function HomePage() {
     const [plateform, setPlateform] = useState<string>("");
 
     useEffect(() => {
-        
-        if(typeof navigator !== "undefined" && typeof window !== "undefined") {
+
+        if (typeof navigator !== "undefined" && typeof window !== "undefined") {
             const browser = detect();
 
             if (browser) {
                 const { os } = browser;
-                
-                if(os === "Android OS" || os === "android") {
+
+                if (os === "Android OS" || os === "android") {
                     setPlateform("https://play.google.com/store/apps/details?id=com.trenderapp.social")
-                } else if(os === "iOS") {
+                } else if (os === "iOS") {
                     setPlateform("https://apps.apple.com/app/trender-social-network/id6443865410")
                 }
             }
@@ -36,35 +36,40 @@ function HomePage() {
     return (
         <div className="presentation">
             <header>
-                <Link disable href="/" >
-                    <Image src={`${cdnbaseurl}/assets/logos/white.png`} alt="app-logo" />
-                </Link>
                 <NavbarDiv>
+                <Link disable href="/" >
+                    <Image width={103} height={29} src={`${cdnbaseurl}/assets/logos/white.png`} alt="app-logo" />
+                </Link>
+                </NavbarDiv>
+                <NavbarDiv>
+                    <Link type="contained" href="/app/statistics/map">
+                        World Map
+                    </Link>
                     <ChangeLanguages size={32} displayText={false} />
-                    
-                    { /*token ? <Link type="contained" href="/">Home</Link> : <Link type="contained" href="/login">Login</Link>*/ }
-                    {  plateform && (
+
+                    { /*token ? <Link type="contained" href="/">Home</Link> : <Link type="contained" href="/login">Login</Link>*/}
+                    {plateform && (
                         <div className="connect">
                             <Link href={plateform}>{t("download")}</Link>
                         </div>
-                        ) 
+                    )
                     }
                 </NavbarDiv>
             </header>
-            <AnimatedTwoDivBox 
-                title_1={"Trender, Create the Next Trend and Become a Recognized Creator"} 
-                text_1={"Trender is a free social network designed to help creators become recognized. You can easily create the next big trend and join a community of like-minded creators."} 
+            <AnimatedTwoDivBox
+                title_1={"Trender, Create the Next Trend and Become a Recognized Creator"}
+                text_1={"Trender is a free social network designed to help creators become recognized. You can easily create the next big trend and join a community of like-minded creators."}
                 text_2={
                     <>
                         <AnimatedIconBox link={"https://play.google.com/store/apps/details?id=com.trenderapp.social"} text="Android" icon={"play-store"} />
                         <AnimatedIconBox link={"https://apps.apple.com/app/trender-social-network/id6443865410"} text="IOS" icon={"apple-icon"} />
                     </>
-               }
-                />
+                }
+            />
 
             <footer>
                 <div className="left">
-                    <h3>Application</h3> 
+                    <h3>Application</h3>
                     <Link href={"https://play.google.com/store/apps/details?id=com.trenderapp.social"}>Android</Link>
                     <Link href={"https://apps.apple.com/app/trender-social-network/id6443865410"}>IOS</Link>
                 </div>

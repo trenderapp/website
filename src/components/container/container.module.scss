@@ -1,0 +1,32 @@
+.container {
+    overflow-y: hidden;
+    overflow-x: auto;
+
+    header {
+        height: 80px;
+        display: flex;
+        flex-direction: row;
+        position: unset;
+        max-width: calc(var(--nav-width) + 250px * 2);
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        background-color: var(--bg-primary);
+        align-items: center;
+    }
+
+    .content {
+        max-height: calc(100% - 80px);
+
+        svg {
+            display: inline-block;
+            vertical-align: middle;
+          }
+          
+          path {
+            fill: #2a354d;
+          }
+    }
+}
