@@ -16,7 +16,7 @@ function Form({ children, title, error }: sectionProps) {
     return (
         <div className={styles.global}>
             <div className={styles.form}>
-                <h2 className={styles.title}>{title}</h2>
+                <p className={styles.title}>{title}</p>
                 { error && <Text color="error" >{error.content}</Text> }
                 { children }
             </div>

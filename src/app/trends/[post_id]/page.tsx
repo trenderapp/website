@@ -2,6 +2,7 @@ import React, { Suspense } from "react"
 import { Metadata, ResolvingMetadata } from 'next'
 import { Loader } from "@/components";
 import { axiosInstance } from "@/services";
+import HomePage from "@/views/HomePage";
 
 type Props = {
     params: { post_id: string }
@@ -51,7 +52,7 @@ export default async function Page({ params: { post_id }, }: { params: { post_id
 
     return (
         <Suspense fallback={<Loader />}>
-            <Loader />
+            <HomePage />
         </Suspense>
     )
 }

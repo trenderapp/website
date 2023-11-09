@@ -1,11 +1,16 @@
 import React, { Suspense } from "react"
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next';
+import { axiosInstance, userAvatar } from "@/services";
+import ProfileComponent, { IProfileComponent } from "@/views/Profile/ProfileComponent";
 import { Loader } from "@/components";
-import { axiosInstance } from "@/services";
-import { cdnbaseurl } from "@/services/constante";
 
 type Props = {
     params: { nickname: string }
+}
+
+async function fetchUser(nickname: string): Promise<IProfileComponent> {
+    const request = await axiosInstance(`/seo/users/${nickname}`);
+    return request.data;
 }
 
 export async function generateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
@@ -14,12 +19,11 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 
     const previousImages = (await parent).openGraph?.images || []
 
-    const request = await axiosInstance(`/seo/users/${nickname}`);
-    const response = request.data;
+    const response = await fetchUser(nickname);
 
     if (response.data) {
         const data = response.data;
-        const avatar = `${cdnbaseurl}/profile_avatars/${data.user_id}/${data.avatar}`;
+        const avatar = userAvatar(data.user_id, data.avatar);
 
         return {
             title: data.username,
@@ -48,9 +52,11 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 
 export default async function Page({ params: { nickname }, }: { params: { nickname: string } }) {
 
+    const user = await fetchUser(nickname);
+
     return (
         <Suspense fallback={<Loader />}>
-            <Loader />
+            <ProfileComponent data={user} />
         </Suspense>
     )
 }

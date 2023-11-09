@@ -1,5 +1,5 @@
 import axios from "axios";
-import { apibaseurl } from "./constante";
+import { apibaseurl, cdnbaseurl } from "./constante";
 import { formatDate } from "./dayjs";
 
 export const PATTERN_NAME = /[a-z ,.'-]+/;
@@ -14,6 +14,8 @@ export const PATTERN_CARD_CVV = /\d{3}/;
 export const PATTERN_FULLNAME = /^$|^[a-zA-ZčČćĆđĐšŠžŽ-]+ [a-zA-ZčČćĆđĐšŠžŽ-]+$/;
 
 export const classNames = (styles: Array<string | undefined>) => styles.join(" ")
+
+export const userAvatar = (user_id: string, avatar: string) => `${cdnbaseurl}/profile_avatars/${user_id}/${avatar}`;
 
 export const convertFirstCharacterToUppercase = (stringToConvert: string) => {
   var firstCharacter = stringToConvert.substring(0, 1);
@@ -58,13 +60,13 @@ export const axiosInstance = axios.create({
 
 export const cguLink = (language: string) => {
   let lang = "https://cdn.trenderapp.com/assets/legal/T&S.pdf"
-  if(language === "fr") lang = "https://cdn2.trenderapp.com/assets/legal/CGU.pdf"
+  if(language === "fr") lang = "https://cdn.trenderapp.com/assets/legal/CGU.pdf"
   return lang;
 }
 
 export const cgvLink = (language: string) => {
   let lang = "https://cdn.trenderapp.com/assets/legal/TOS.pdf"
-  if(language === "fr") lang = "https://cdn2.trenderapp.com/assets/legal/CGV.pdf"
+  if(language === "fr") lang = "https://cdn.trenderapp.com/assets/legal/CGV.pdf"
   return lang;
 }
 

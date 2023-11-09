@@ -42,20 +42,30 @@ const fadeInLeft = {
     }
 };
 
-type sectionProps = { 
+type sectionProps = {
+    image?: {
+        src: string;
+        alt: string;
+    } 
     title_1: string;
     text_1: string;
     text_2: React.ReactElement;
 }
 
-function AnimatedTwoDivBox({ title_1, text_1, text_2 }: sectionProps) {
+function AnimatedTwoDivBox({ title_1, text_1, text_2, image = {
+    alt: "thumbnail",
+    src: "/assets/12promax.png"
+}}: sectionProps) {
 
     return (
         <motion.div className={styles.box}>
         <motion.div className={`${styles.box_image}`}>
             <motion.div {...fadeInLeft} className={styles.informations}>
                 <motion.div {...fadeInLeft} className={styles.image}>
-                    <motion.img src="/assets/12promax.png" alt="thumbnail" />
+                    <motion.img style={{
+                        maxWidth: 500,
+                        maxHeight: 500
+                    }} src={image.src} alt={image.alt} />
                 </motion.div>
                 <motion.div {...fadeInLeft} style={{
                     width: "100%",
