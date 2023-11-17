@@ -32,7 +32,7 @@ const fadeInUp = {
 };
 
 type sectionProps = {
-    reverse: boolean;
+    reverse?: boolean;
     title: string;
     image: {
         src: string;
@@ -41,13 +41,13 @@ type sectionProps = {
     text: string
 }
 
-function AnimatedBoxImage({ reverse, title, image, text }: sectionProps) {
+function AnimatedBoxImage({ reverse = false, title, image, text }: sectionProps) {
 
     return (
         <motion.div className={styles.box}>
             <motion.div className={`${styles.box_image} ${reverse ? styles.reverse : ""}`}>
-                <motion.div {...fadeInUp} className={styles.image}>
-                    <motion.img src={image.src} alt={image.alt} />
+                <motion.div className={styles.image}>
+                    <motion.img {...fadeInUp} src={image.src} alt={image.alt} />
                 </motion.div>
                 <motion.div className={styles.informations}>     
                     <motion.h2 {...fadeInUp} className={styles.title}>{title}</motion.h2>

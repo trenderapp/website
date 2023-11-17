@@ -31,7 +31,7 @@ function ChangeLanguages({ size, displayText }: sectionProps) {
                         </span>
                     )
                 }
-                <span onClick={() => setDisplay(false)} className={`${styles.row} ${styles.justify_center} ${styles.full_width} ${styles.padding_10} ${styles.pointer} ${styles.hover}`}>{t("cancel")}</span>
+                <span onClick={() => setDisplay(false)} className={`${styles.row} ${styles.justify_center} ${styles.full_width} ${styles.padding_10} ${styles.pointer} ${styles.hover}`}>{t("save")}</span>
              </FixedMenu>
         }
         </div>

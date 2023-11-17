@@ -3,6 +3,7 @@
   "language": "Language",
   "redirect_secondes": "Redirect in {{time}} secondes",
   "cancel": "Cancel",
+  "save": "Save",
   "download": "Download",
   "t_and_s": "Terms of use",
   "email": "Email",
@@ -12,7 +13,20 @@
   "terms_of_sales": "Terms of Sales",
   "privacy": "Privacy Policy",
 
+  "invite_link": "Join {{username}} on Trender",
+  
   "home_title": "Trender, Create the Next Trend and Become a Recognized Creator",
-  "home_description": "Trender is a free social network designed to help creators become recognized. You can easily create the next big trend and join a community of like-minded creators.",
-  "invite_link": "Join {{username}} on Trender"
+  "home_description": "Trender is a free social network designed to help creators get recognized. Easily create the next big trend and join a community of like-minded creators.",
+  
+  "home_create_title": "Stay Connected",
+  "home_create_description": "Create, share, and follow the most captivating trends while staying connected to your loved ones and favorite celebrities. Express yourself with unique Trends, explore popular content, and connect with an exciting global community.",
+
+  "home_explore_title": "Navigate to New Horizons",
+  "home_explore_description": "Explore unique Trends, create your own stories, and connect with like-minded individuals across the globe. Trender provides the key to unlock a world of exciting discoveries.",
+
+  "home_search_title": "A New Way to Search",
+  "home_search_description": "Trender offers endless possibilities to find fascinating posts. From image searches to categories, hashtags, and more, dive into a world where innovation meets discovery.",
+
+  "home_chat_title": "Connect, Support, Personalize",
+  "home_chat_description": "Express your support, personalize your experience, and stay connected in a way that goes beyond words. Trender is not just a messaging platform; it's a hub of meaningful interactions. Send love to your favorite creators with the integrated money-sending feature, unlock exclusive access to private and personalized content, and stay close to your loved ones."
 }

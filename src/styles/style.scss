@@ -201,10 +201,9 @@ a, .svg-link, .a {
 }
 
 header {
-  position: fixed;
   width: 100vw;
   height: var(--nav-height);
-  z-index: 888;
+  z-index: 9998;
 
   .header {
     background-color: var(--bg-primary);

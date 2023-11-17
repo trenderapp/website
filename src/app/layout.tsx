@@ -7,7 +7,6 @@ import "@/styles/error.scss";
 import "@/styles/style.scss";
 import "@/styles/loader.scss";
 import "@/styles/alert.scss";
-import "@/styles/presentation.scss";
 import "@/styles/global.scss";
 import "@/styles/variables.scss";
 

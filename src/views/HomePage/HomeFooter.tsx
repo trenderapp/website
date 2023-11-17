@@ -9,7 +9,7 @@ export default function HomeFooter() {
     return (
         <footer>
             <div className="left">
-                <h3>Application</h3>
+                <h3>Applications</h3>
                 <Link href={"https://play.google.com/store/apps/details?id=com.trenderapp.social"}>Android</Link>
                 <Link href={"https://apps.apple.com/app/trender-social-network/id6443865410"}>IOS</Link>
             </div>
